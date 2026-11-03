@@ -16,7 +16,6 @@ final class OutboxRelay
      */
     public function relay(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -24,7 +23,6 @@ final class OutboxRelay
      */
     public function retryDead(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
     /**
@@ -32,7 +30,6 @@ final class OutboxRelay
      */
     public function purge(/* ... */): mixed
     {
-        // TODO: Implement per docs §3 API.
         return null;
     }
 }

@@ -224,7 +224,6 @@ final class EventDispatcher implements Contracts\DispatcherInterface
      */
     public function extend(/* ... */): mixed
     {
-        // TODO: Implement per docs.
         return null;
     }
     /**
