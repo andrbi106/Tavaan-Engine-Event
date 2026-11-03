@@ -11,7 +11,7 @@
     }
   },
   "providers": [
-    "Tavaan\\Engine\\Event\\EventServiceProvider"
+    "Tavaan\\Engine\\Event\\EventDispatcherServiceProvider"
   ],
   "requires": {
     "php": ">=8.2",
