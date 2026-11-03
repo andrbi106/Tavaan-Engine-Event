@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\Event\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tavaan\Testing\TestCase;
 use Tavaan\Engine\Event\EventDispatcher;
 use Tavaan\Engine\Event\WildcardMatcher;
 use Tavaan\Engine\Event\Contracts\DispatcherInterface;
