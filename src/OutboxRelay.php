@@ -14,21 +14,21 @@ final class OutboxRelay
     /**
      * relay
      */
-    public function relay(/* ... */): mixed
+    public function relay()
     {
         return null;
     }
     /**
      * retryDead
      */
-    public function retryDead(/* ... */): mixed
+    public function retryDead()
     {
         return null;
     }
     /**
      * purge
      */
-    public function purge(/* ... */): mixed
+    public function purge()
     {
         return null;
     }

@@ -222,14 +222,14 @@ final class EventDispatcher implements Contracts\DispatcherInterface
     /**
      * extend
      */
-    public function extend(/* ... */): mixed
+    public function extend()
     {
         return null;
     }
     /**
      * push
      */
-    public function push(/* ... */): mixed
+    public function push(): self
     {
         return $this->save();
     }
