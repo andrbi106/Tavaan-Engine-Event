@@ -218,4 +218,21 @@ final class EventDispatcher implements Contracts\DispatcherInterface
         }
         return new $class();
     }
+
+    /**
+     * extend
+     */
+    public function extend(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
+    /**
+     * push
+     */
+    public function push(/* ... */): mixed
+    {
+        // TODO: Implement per docs.
+        return null;
+    }
 }
