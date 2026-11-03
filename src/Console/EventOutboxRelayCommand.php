@@ -9,7 +9,7 @@ use Tavaan\Core\Contracts\Console\CommandInterface;
 /**
  * event:outbox-relay command.
  */
-final class Event_outboxRelayCommand implements CommandInterface
+final class EventOutboxRelayCommand implements CommandInterface
 {
     public function name(): string
     {

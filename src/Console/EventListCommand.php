@@ -9,7 +9,7 @@ use Tavaan\Core\Contracts\Console\CommandInterface;
 /**
  * event:list command.
  */
-final class Event_listCommand implements CommandInterface
+final class EventListCommand implements CommandInterface
 {
     public function name(): string
     {
