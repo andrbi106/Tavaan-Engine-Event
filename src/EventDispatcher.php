@@ -222,9 +222,9 @@ final class EventDispatcher implements Contracts\DispatcherInterface
     /**
      * extend
      */
-    public function extend()
+    public function extend(string $event, \Closure $extender): void
     {
-        return null;
+        $this->extenders[$event][] = $extender;
     }
     /**
      * push
