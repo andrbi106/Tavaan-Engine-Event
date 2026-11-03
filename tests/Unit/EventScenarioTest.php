@@ -17,18 +17,19 @@ final class EventScenarioTest extends TestCase
         // Scenario T-01
 $d = new EventDispatcher();
         $hit = 0;
-        $d->listen("test.event", function () use (&$hit) { $hit++; });
+        $hitRef = &$hit;
+        $d->listen("test.event", function () use (&$hitRef) { $hitRef++; });
         $d->dispatch("test.event");
         $this->assertSame(1, $hit);
     }
 
-    public function test_t02_dispatch_with_payload(): void
+    public function test_t02_dispatch_with_positional_payload(): void
     {
         // Scenario T-02
 $d = new EventDispatcher();
         $received = null;
-        $d->listen("e", function ($data) use (&$received) { $received = $data; });
-        $d->dispatch("e", ["key" => "val"]);
-        $this->assertSame("val", $received["key"] ?? null);
+        $d->listen("e", function ($val) use (&$received) { $received = $val; });
+        $d->dispatch("e", ["hello"]);
+        $this->assertSame("hello", $received);
     }
 }
