@@ -14,22 +14,36 @@ final class OutboxRelay
     /**
      * relay
      */
-    public function relay()
+    public function relay(int $batch = 100): int
     {
-        return null;
+        $count = 0;
+        $pending = $this->repository->getPending($batch);
+        foreach ($pending as $event) {
+            $this->dispatch($event);
+            $this->repository->markProcessed($event["id"]);
+            $count++;
+        }
+        return $count;
     }
     /**
      * retryDead
      */
-    public function retryDead()
+    public function retryDead(int $batch = 10): int
     {
-        return null;
+        $count = 0;
+        $dead = $this->repository->getDead($batch);
+        foreach ($dead as $event) {
+            $this->dispatch($event);
+            $this->repository->markProcessed($event["id"]);
+            $count++;
+        }
+        return $count;
     }
     /**
      * purge
      */
-    public function purge()
+    public function purge(int $olderThanDays = 30): int
     {
-        return null;
+        return $this->repository->purgeOlder($olderThanDays);
     }
 }
