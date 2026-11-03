@@ -232,7 +232,6 @@ final class EventDispatcher implements Contracts\DispatcherInterface
      */
     public function push(/* ... */): mixed
     {
-        // TODO: Implement per docs.
-        return null;
+        return \$this->save();
     }
 }
