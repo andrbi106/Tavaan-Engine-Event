@@ -11,38 +11,21 @@
     }
   },
   "providers": [
-    "Tavaan\\Engine\\Event\\EventDispatcherServiceProvider"
+    "Tavaan\\Engine\\Event\\EventServiceProvider"
   ],
   "requires": {
     "php": ">=8.2",
-    "engines": [
-      "container",
-      "config"
-    ]
-  },
-  "soft_requires": {
-    "engines": [
-      "queue",
-      "database",
-      "realtime"
-    ]
+    "engines": ["container", "config"]
   },
   "config": {
     "file": "config/event.php",
     "key": "event"
   },
-  "tables": [
-    "tvn_outbox",
-    "tvn_inbox"
-  ],
-  "commands": [
-    "event:list",
-    "event:outbox-relay"
-  ],
+  "tables": [],
+  "commands": [],
   "facade": {
     "name": "Event",
     "accessor": "events"
   },
-  "docs": "docs/03-engines/event.md",
-  "notes": "Outbox/Inbox با موتور database فعال شد (M3/M4 — ADR-0009): tvn_outbox با claim اتمیک + backoff + releaseStale و event:outbox-relay."
+  "docs": "docs/03-engines/event.md"
 }

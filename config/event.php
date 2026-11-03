@@ -2,35 +2,20 @@
 
 declare(strict_types=1);
 
-/*|--------------------------------------------------------------------------
- | Event Engine Configuration
- |--------------------------------------------------------------------------
- |
- | پیکربندی موتور event — همهٔ کلیدهای مستندشده در `docs/03-engines/event.md` بخش «پیکربندی».
- |
- |@see https://github.com/Derogaramin/Tavaan-Doc/blob/main/docs/03-engines/event.md
- */
-
 return [
-    /*| پیش‌فرض موتور (driver/store یا حالت فعال) */
-    'default' => env('EVENT_DEFAULT', 'default'),
+    /*| Fake mode (برای تست) */
+    'fake' => \getenv('TVN_EVENT_FAKE') !== false
+        ? \filter_var(\getenv('TVN_EVENT_FAKE'), \FILTER_VALIDATE_BOOL)
+        : false,
 
-    /*| کلید کش (در صورت استفاده) */
-    'prefix' => env('EVENT_PREFIX', 'event:'),
+    /*| wildcard default */
+    'wildcard_default' => '*',
 
-    /*| تنظیمات لاگ */
-    'log' => [
-        'channel' => env('EVENT_LOG_CHANNEL', 'event'),
-    ],
-
-    /*| Facade */
-    'facade' => [
-        'name' => 'Event',
-        'accessor' => 'events',
-    ],
-
-    /*| سایر کلیدها (طبق مستندات) */
-    'options' => [
-        // TODO: کلیدهای اضافی طبق سند §۶ (پیکربندی)
+    /*| Discovery — اسکن خودکار listenerها از attributes */
+    'discovery' => [
+        'enabled' => \getenv('TVN_EVENT_DISCOVERY') !== false
+            ? \filter_var(\getenv('TVN_EVENT_DISCOVERY'), \FILTER_VALIDATE_BOOL)
+            : false,
+        'cache' => 'storage/framework/events.php',
     ],
 ];
