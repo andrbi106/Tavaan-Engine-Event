@@ -2,6 +2,8 @@
 
 > **رویداد و Outbox** — موتور Event در فریمورک تَوان
 
+این موتور از کلاس پایهٔ `Engine` (در [Tavaan-Engine-Core](https://github.com/andrbi106/Tavaan-Engine-Core)) ارث می‌برد.
+
 ## مشخصات
 
 | فیلد | مقدار |
@@ -11,67 +13,60 @@
 | عنوان فارسی | رویداد و Outbox |
 | نسخه | `0.1.0` |
 | namespace | `Tavaan\Engine\Event` |
-| نوع | `engine` |
-| Facade | `Event` (accessor: `events`) |
+| کلاس موتور | `Tavaan\Engine\Event\EventEngine` |
+| Facade | Event (`events`) |
 
-## قراردادها (Contracts)
+## کلاس موتور
 
-این موتور قراردادهای زیر را ارائه می‌دهد:
+```php
+namespace Tavaan\Engine\Event;
 
-- `Tavaan\Engine\Event\Contracts\DispatcherInterface`
+use Tavaan\EngineCore\Engine as BaseEngine;
+use Tavaan\EngineCore\Contracts\EngineManifestInterface;
 
-## خطاها (Exceptions)
+final class EventEngine extends BaseEngine
+{
+    public function __construct(EngineManifestInterface $manifest)
+    {
+        parent::__construct($manifest);
+    }
 
-- `Tavaan\Engine\Event\Exceptions\EventNotAllowlistedException`
-- `Tavaan\Engine\Event\Exceptions\ListenerException`
-- `Tavaan\Engine\Event\Exceptions\MaxListenersExceededException`
+    public function register(ContainerInterface $container): void
+    {
+        parent::register($container);
+        // bindingهای اختصاصی موتور
+    }
 
-## کلاس‌های اصلی
+    public function boot(): void
+    {
+        parent::boot();
+    }
+}
+```
 
-- `src/Console/OutboxRelayCommand.php`
-- `src/EventDispatcher.php`
-- `src/EventServiceProvider.php`
-- `src/ListenerRegistry.php`
-- `src/ListenerResolver.php`
-- `src/Outbox/DatabaseOutbox.php`
-- `src/OutboxRelay.php`
-- `src/RegisteredListener.php`
-- `src/TrieNode.php`
-- `src/WildcardMatcher.php`
+**فایل:** `src/EventEngine.php`
+
+## وابستگی‌ها
+
+**موتورهای مورد‌نیاز:** `container`, `config`
 
 ## Service Providerها
 
 - `Tavaan\Engine\Event\EventServiceProvider`
 
-## وابستگی‌ها
+## سه درگاه ارتباط با سایر موتورها
 
-**موتورهای مورد‌نیاز:**
-
-- `container`
-- `config`
-
-## پیکربندی
-
-- فایل پیکربندی: `config/event.php`
-- کلید: `event`
+| درگاه | الگو | متدهای convenience |
+|---|---|---|
+| Container | pull-based DI | `make()`, `bound()` |
+| Events | pub/sub | `dispatch()`, `listen()` |
+| EngineBus | point-to-point RPC | `call()`, `offer()` |
 
 ## نصب
 
 ```bash
 git clone https://github.com/andrbi106/Tavaan-Engine-Event.git
 ```
-
-این موتور بخشی از فریمورک تَوان است و معمولاً به‌صورت مستقیم نصب نمی‌شود،
-بلکه توسط [Tavaan-Core](https://github.com/andrbi106/Tavaan-Core) مدیریت می‌شود.
-
-## روابط با سایر مخازن
-
-| مخزن | نقش |
-|---|---|
-| **`andrbi106/Tavaan-Engine-Event`** (این مخزن) | موتور Event |
-| `andrbi106/Tavaan-Engine-Core` | ساختار پایه + درگاه ارتباط موتورها |
-| `andrbi106/Tavaan-Core` | اسکلت اپلیکیشن + همهٔ موتورها |
-| `Derogaramin/Tavaan-Framework` | فریمورک مادر (monorepo) |
 
 ## مجوز
 

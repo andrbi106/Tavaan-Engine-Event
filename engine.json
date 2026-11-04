@@ -15,7 +15,10 @@
   ],
   "requires": {
     "php": ">=8.2",
-    "engines": ["container", "config"]
+    "engines": [
+      "container",
+      "config"
+    ]
   },
   "config": {
     "file": "config/event.php",
@@ -27,5 +30,6 @@
     "name": "Event",
     "accessor": "events"
   },
-  "docs": "docs/03-engines/event.md"
+  "docs": "docs/03-engines/event.md",
+  "class": "Tavaan\\Engine\\Event\\EventEngine"
 }
